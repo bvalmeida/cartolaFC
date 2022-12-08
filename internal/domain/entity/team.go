@@ -1,0 +1,30 @@
+package entity
+
+type Team struct{
+	ID string
+	Name string
+	Players []*Player
+}
+
+//Construtor
+func NewTeam(id, name string) *Team{
+	return &Team{
+		ID: id,
+		Name: name,
+	}
+}
+
+//Adicionar novo Jogador
+func (t *Team) AddPlayer(player *Player){
+	t.Players = append(t.Players, player)
+}
+
+//Remover Jogador, interando em um For e removendo a posição do array
+func (t *Team) RemovePlayer(player *Player){
+	for i, p := range t.Players{
+		if p.ID == player.ID{
+			t.Players = append(t.Players[:i], t.Players[i+1:]...)
+			return
+		}
+	}
+}
